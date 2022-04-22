@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Equipment list editor</title>
+    <link href="style.css" rel="stylesheet" crossorigin="anonymous">
+
+</head>
+<body>
+<!-- <form method="POST" name="Register" action = "{% url 'register' %}">
+   {% csrf_token %} -->
+
+      <div width = 50% style = "mainGrid">
+        {% if equipment %}
+            {% for row in equipment %}
+                <div>{{row.id}}</div>
+                <div>{{row.vendor.name}}</div>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+</body>
+</html>

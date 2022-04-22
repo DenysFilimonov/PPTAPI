@@ -1,0 +1,16 @@
+.MainGrid{
+    width: 50%;
+    display : grid;
+    grid-template-columns: 2fr 2fr 6fr 1fr 1fr 1fr;
+    row-gap: 1em;
+}
+
+.container__color {
+    background-color: rgba(	194, 202, 215, 100%);
+    width: 50%;
+}
+
+.height_100 {
+    margin-top: 50px;
+    height: max(100vh, 100%);
+}

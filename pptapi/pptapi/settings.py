@@ -18,12 +18,12 @@ DB_HOST = os.environ.get("DB_HOST", "localhost")
 DB_USERNAME = os.environ.get("DB_USERNAME", "postgres")
 DB_PASSWORD = os.environ.get("DB_PASSWORD", "1234")
 DATA_BASE = os.environ.get("DATA_BASE", "profit")
-PORT = os.environ.get("PORT", "5432")
+DB_PORT = os.environ.get("DB_PORT", "5432")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -34,10 +34,18 @@ SECRET_KEY = 'django-insecure-jo6z1e*d6)=l@#i6p@&sx+up1ux8l-g**#na7u2ul8)!!+wagp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['https://pptapi.herokuapp.com',
+                 'http://pptapi.herokuapp.com/',
+                 'pptapi.herokuapp.com/',
+                 'pptapi.herokuapp.com',
+                 '.herokuapp.com', 'localhost', '127.0.0.1']
 
 # Application definition
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+APPEND_SLASH = False
 
 INSTALLED_APPS = [
     'calc_api.apps.CalcApiConfig',
@@ -53,6 +61,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,10 +69,24 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
+
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "access-control-allow-headers"
+]
+
+CSRF_TRUSTED_ORIGINS = ['https://pptapi.herokuapp.com']
+
 
 ROOT_URLCONF = 'pptapi.urls'
 
@@ -96,7 +119,7 @@ DATABASES = {
         'USER': DB_USERNAME,
         'PASSWORD': DB_PASSWORD,
         'HOST': DB_HOST,
-        'PORT': PORT,
+        'PORT': DB_PORT,
     }
 }
 
