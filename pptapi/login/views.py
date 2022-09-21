@@ -52,7 +52,7 @@ def login_user(request):
         messages.add_message(request, messages.ERROR, 'Username or password is incorrect')
         return render(request, 'log.html')
 
-@login_required(login_url='/login/')
+#@login_required(login_url='/login/')
 def register(request):
     if request.method == 'GET':
         return render(request, 'register.html')

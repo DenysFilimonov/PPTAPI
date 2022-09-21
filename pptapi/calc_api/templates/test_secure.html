@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test secure</title>
+</head>
+<body>
+
+    {% if user %}
+        Hello, {{user}} !
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label>Input user name</label>
+        <input type="text" name="user"/>
+        <button>Send</button>
+    </form>
+</body>
+</html>
